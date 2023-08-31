@@ -4,25 +4,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
-    <!-- TailWind Css CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+     <!-- TailWind Css CDN -->
+     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Custom Style -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              Inter: ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+   
     <title>PH TUBE</title>
   </head>
-  <body>
-    <header class="px-20 pb-20 pt-8">
-      <nav class="grid grid-cols-3 justify-between border-b-2 border-[#25252520] pb-7">
+  <body class="font-Inter">
+    <!-- Header Start Here -->
+    <header class="px-20 pb-10 pt-8">
+
+        <!-- Nav Section Start  -->
+      <nav
+        class="grid grid-cols-3 justify-between border-b-[1px] border-[#25252520] pb-7"
+      >
         <div class="logo">
           <img src="logo.png" alt="" />
         </div>
         <div class="sort-btn text-center">
-            <button class="bg-[#25252520] py-2 px-3 rounded-lg">Sort by view</button>
+          <button class="bg-[#25252520] py-2 px-3 rounded">
+            Sort by view
+          </button>
         </div>
         <div class="blog-btn text-right">
-            <button class="bg-[#FF1F3D] py-2 px-4 rounded-lg text-white">Blog</button>
+          <button class="bg-[#FF1F3D] py-2 px-4 rounded text-white">
+            Blog
+          </button>
         </div>
       </nav>
+       <!-- Nav Section End  -->
     </header>
-    <main></main>
+
+    <!-- Main Section Start Here -->
+    <main class="px-20">
+        <!-- Category Container and Tabs -->
+      <div class="category-container flex gap-5 justify-center items-center"></div>
+    </main>
     <script src="index.js"></script>
   </body>
 </html>
