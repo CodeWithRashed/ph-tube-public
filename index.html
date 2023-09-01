@@ -28,36 +28,52 @@
   </head>
   <body class="font-Inter">
     <!-- Header Start Here -->
-    <header class="px-20 pb-10 pt-8">
+    <header class="px-5 lg:px-20 pb-10 pt-8">
 
         <!-- Nav Section Start  -->
       <nav
-        class="grid grid-cols-3 justify-between border-b-[1px] border-[#25252520] pb-7"
+        class="grid md:grid-cols-3 justify-center items-center lg:justify-between border-b-[1px] border-[#25252520] pb-7"
       >
-        <div class="logo">
+        <div class="logo flex justify-center">
           <img src="logo.png" alt="" />
         </div>
-        <div class="sort-btn text-center" onclick="doSorting()">
+        <!-- Nav For Mobile and Tab Start Here -->
+        <div class="onlyForMobile flex gap-8 md:hidden mt-5">
+          <div class="sort-btn text-center flex justify-center" onclick="doSorting()">
+            <button class="bg-[#25252520] py-2 px-3 rounded text-[#25252590] font-bold">
+              Sort by view
+            </button>
+          </div>
+          <div class="blog-btn text-right flex justify-center">
+            <button onclick="gotoQna()" class="bg-[#FF1F3D] py-2 px-4 rounded text-white">
+              Blog
+            </button>
+          </div>
+        </div>
+
+        <!-- Nav For Lg Start Here -->
+        <div class="sort-btn hidden text-center md:flex justify-center" onclick="doSorting()">
           <button class="bg-[#25252520] py-2 px-3 rounded text-[#25252590] font-bold">
             Sort by view
           </button>
         </div>
-        <div class="blog-btn text-right">
+        <div class="blog-btn text-right hidden md:flex justify-center">
           <button onclick="gotoQna()" class="bg-[#FF1F3D] py-2 px-4 rounded text-white">
             Blog
           </button>
         </div>
+        <!-- Nav For Lg end Here -->
       </nav>
        <!-- Nav Section End  -->
     </header>
 
     <!-- Main Section Start Here -->
-    <main class="px-20 pb-20">
+    <main class="px-5 lg:px-20 lg:pb-20">
         <!-- Category Container and Tabs -->
-      <div class="category-container flex gap-5 justify-center items-center mb-10"></div>
+      <div class="category-container flex flex-wrap gap-5 justify-center items-center mb-10"></div>
 
       <!-- Video Container -->
-      <div class="video-container grid grid-cols-4 gap-5"></div>
+      <div class="video-container grid md:grid-cols-2 lg:grid-cols-4 gap-5"></div>
       
     </main>
     <script src="index.js"></script>

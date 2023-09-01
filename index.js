@@ -14,14 +14,12 @@ const getWebData = async () => {
 
   //Getting Tabs And Append them to Document
   data.forEach((category) => {
-    console.log(category);
     let categoryItem = document.createElement("a");
     categoryItem.addEventListener("click", function () {
-      console.log("Clicked", category.category_id);
       getCategoryData(category.category_id);
     });
     categoryItem.classList =
-      "tab-btn bg-[#25252520] py-1 px-7 rounded text-[#25252590] font-bold cursor-pointer ";
+      "bg-[#25252520] py-1 px-7 rounded text-[#25252590] font-bold cursor-pointer active:bg-red-300 focus:bg-red-300 target:bg-red-500";
     categoryItem.innerText = `${category.category}`;
     categoryContainer.appendChild(categoryItem);
   });
@@ -37,7 +35,6 @@ const getCategoryData = async (id = 1000) => {
 
   //shorting data logic
   if (!isShorted) {
-    console.log("No short");
   } else {
     data.sort((a, b) => {
       return parseInt(b.others.views) - parseInt(a.others.views);
@@ -46,14 +43,12 @@ const getCategoryData = async (id = 1000) => {
 
   videoContainer.innerHTML = "";
   //Logic for blank data
-  if (data == "") { 
+  if (data == "") {
     videoContainer.innerHTML = `
     <div class="flex justify-center items-center flex-col space-y-2 col-span-4">
     <img src="icon.png" class="h-24 w-24">
     <h1 class="font-bold text-2xl text-center">Oops!! Sorry, There is no <br> content here</h1>
     </div>`;
-    document.querySelector(".noDataDiv").innerHTML =""
-    document.querySelector(".noDataDiv").appendChild(noDataDiv)
   }
 
   data.forEach((videoEl) => {
@@ -62,9 +57,8 @@ const getCategoryData = async (id = 1000) => {
     let videoTitle = videoEl.title;
     //Converting sec into min and hr
     let videoPostedTime = videoEl.others.posted_date;
-    let videoPostHour = Math.floor((parseInt(videoPostedTime) / 3600))
-    let videoPostMin= Math.floor((parseInt(videoPostedTime) % 3600) / 60 )
- console.log(videoPostedTime)
+    let videoPostHour = Math.floor(parseInt(videoPostedTime) / 3600);
+    let videoPostMin = Math.floor((parseInt(videoPostedTime) % 3600) / 60);
 
     let videoPostStatus = "block";
 
@@ -130,13 +124,9 @@ const doSorting = () => {
 
 //navigate to Questions and Answers html file
 const gotoQna = () => {
-  window.location.href = "qna.html"
-}
-
+  window.location.href = "qna.html";
+};
 
 //Setting Active Class
-
-
 getWebData();
-
 getCategoryData();
