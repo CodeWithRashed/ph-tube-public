@@ -14,12 +14,12 @@ const getWebData = async () => {
 
   //Getting Tabs And Append them to Document
   data.forEach((category) => {
-    let categoryItem = document.createElement("a");
+    let categoryItem = document.createElement("button");
     categoryItem.addEventListener("click", function () {
       getCategoryData(category.category_id);
     });
     categoryItem.classList =
-      "bg-[#25252520] py-1 px-7 rounded text-[#25252590] font-bold cursor-pointer active:bg-red-300 focus:bg-red-300 target:bg-red-500";
+      "bg-[#25252520] py-1 px-7 rounded text-[#25252590] hover:scale-110  font-bold cursor-pointer focus:bg-[#FF1F3D] focus:text-white";
     categoryItem.innerText = `${category.category}`;
     categoryContainer.appendChild(categoryItem);
   });
@@ -42,6 +42,7 @@ const getCategoryData = async (id = 1000) => {
   }
 
   videoContainer.innerHTML = "";
+  console.log(data)
   //Logic for blank data
   if (data == "") {
     videoContainer.innerHTML = `

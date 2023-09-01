@@ -1,11 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- TailWind Css CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      const goHome = () => {
+        window.location.href = "index.html";
+      };
+    </script>
     <title>Questions and Answers</title>
-</head>
-<body>
-    <h1>Upcoming...</h1>
-</body>
+  </head>
+  <body class="h-screen p-8">
+    <nav class="flex justify-between border-b-[2px] border-[#25252520] pb-7">
+      <div class="logo flex justify-center">
+        <img src="logo.png" alt="" />
+      </div>
+      <!-- Nav For Mobile and Tab Start Here -->
+      <!-- Nav For Lg Start Here -->
+      <div
+        class="sort-btn text-center md:flex justify-center"
+        onclick="goHome()"
+      >
+        <button class="bg-[#FF1F3D] py-2 px-3 rounded text-white font-bold">
+          Go Home
+        </button>
+      </div>
+    </nav>
+
+    <!-- QNA SECTION -->
+    <div class="qna-container grid gap-8 lg:grid-cols-3 justify-center mt-8">
+      <div class="qna-card border-2 border-[#FF1F3D] rounded-lg">
+        <div
+          class="question bg-[#FF1F3D] text-white font-bold px-3 py-2 rounded-t"
+        >
+          <h1 class="text-xl">Discuss the scope of var, let, and const??</h1>
+        </div>
+        <div class="answer px-3 py-2">
+          <h1 class="font-bold text-center mb-2">Answer</h1>
+          <ul class="list-disc list-inside space-y-3">
+            <li><span class="font-bold">Var Variable:</span>
+              var is a functional scope variable. We can access the variable
+              anywhere inside the function.
+            </li>
+            <li>
+              <span class="font-bold">Let Variable:</span>
+              let is a block-scope variable; let is only accessible within the
+              block where it is defined. We cannot access them outside of their
+              block. Which starts and ends with "{}" curly braces.
+            </li>
+
+            <li>
+              <span class="font-bold">Const Variable:</span>
+              const is also the same as let. but we cannot reassign the value of
+              a variable declared with const.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="qna-card border-2 border-[#FF1F3D] rounded-lg">
+        <div
+          class="question bg-[#FF1F3D] text-white font-bold px-3 py-2 rounded-t"
+        >
+          <h1 class="text-xl">Tell us the use cases of null and undefined??</h1>
+        </div>
+        <div class="answer px-3 py-2">
+          <h1 class="font-bold text-center mb-2">Answer</h1>
+          <ul class="list-disc list-inside space-y-3">
+            <li>
+              <span class="font-bold">Null:</span> null is used when we want to
+              indicate that a variable or object has no value but we want to
+              assign it later.
+            </li>
+            <li>
+              <span class="font-bold">Undefined:</span> If a function is not
+              returning anything or if there is an absence of an assigned value,
+              we will get undefined. 
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="qna-card border-2 border-[#FF1F3D] rounded-lg">
+        <div
+          class="question bg-[#FF1F3D] text-white font-bold px-3 py-2 rounded-t"
+        >
+          <h1 class="text-xl">What do you mean by REST API??</h1>
+        </div>
+        <div class="answer px-3 py-2">
+          <h1 class="font-bold text-center mb-2">Answer</h1>
+          <ul class="list-inside space-y-3">
+            <li>
+              REST API is like a waiter that follows specific rules to let you
+              find, add new food to your menu card, change your order, and
+              remove food (data) from your order (server) using a well-known
+              system (HTTP). It's a way for different programs to talk to each
+              other on the internet.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

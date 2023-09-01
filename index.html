@@ -34,7 +34,7 @@
       <nav
         class="grid md:grid-cols-3 justify-center items-center lg:justify-between border-b-[1px] border-[#25252520] pb-7"
       >
-        <div class="logo flex justify-center">
+        <div class="logo flex justify-center lg:justify-start">
           <img src="logo.png" alt="" />
         </div>
         <!-- Nav For Mobile and Tab Start Here -->
@@ -53,12 +53,12 @@
 
         <!-- Nav For Lg Start Here -->
         <div class="sort-btn hidden text-center md:flex justify-center" onclick="doSorting()">
-          <button class="bg-[#25252520] py-2 px-3 rounded text-[#25252590] font-bold">
+          <button class="bg-[#25252520] py-2 px-3 rounded text-[#25252590] hover:scale-105  font-bold cursor-pointer focus:bg-[#FF1F3D] focus:text-white">
             Sort by view
           </button>
         </div>
-        <div class="blog-btn text-right hidden md:flex justify-center">
-          <button onclick="gotoQna()" class="bg-[#FF1F3D] py-2 px-4 rounded text-white">
+        <div class="blog-btn text-right hidden md:flex justify-center lg:justify-end">
+          <button onclick="gotoQna()" class="bg-[#FF1F3D] py-2 px-4 rounded text-white font-bold">
             Blog
           </button>
         </div>
