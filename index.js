@@ -2,25 +2,38 @@ console.log("Linked With PH TUBE JS");
 //Global Variable
 let categoryContainer = document.querySelector(".category-container");
 let videoContainer = document.querySelector(".video-container");
+let isShorted;
 
+
+
+//Getting Category from API function
 const getWebData = async () => {
   //Getting Data from API
   let dataUrl = "https://openapi.programming-hero.com/api/videos/categories";
   const res = await fetch(dataUrl);
   const rawData = await res.json();
   const data = rawData.data;
+ 
 
   //Getting Tabs And Append them to Document
   data.forEach((category) => {
     console.log(category);
     let categoryItem = document.createElement("a");
-    categoryItem.classList =
-      "bg-[#25252520] py-1 px-7 rounded text-[#25252590] font-bold";
+    categoryItem.addEventListener("click", function(){
+      console.log("Clicked", category.category_id)
+           getCategoryData(category.category_id)
+
+    })
+    categoryItem.classList = 
+      "bg-[#25252520] py-1 px-7 rounded text-[#25252590] font-bold cursor-pointer";
     categoryItem.innerText = `${category.category}`;
     categoryContainer.appendChild(categoryItem);
+    
   });
 };
 
+
+//Getting video card data from API
 const getCategoryData = async (id = 1000) => {
   //Getting Data based on Category
   let url = `https://openapi.programming-hero.com/api/videos/category/${id}`;
@@ -28,6 +41,29 @@ const getCategoryData = async (id = 1000) => {
   const rawData = await res.json();
   const data = rawData.data;
 
+  //shorting data
+  if(!isShorted){
+    console.log("No short")
+  }else{
+    data.sort((a, b) => {
+      return parseInt(b.others.views) - parseInt(a.others.views);
+    });
+  }
+  
+  
+  videoContainer.innerHTML = "";
+  //Logic for blank data
+  if(data == ""){
+    videoContainer.classList.remove("grid-cols-4")
+    videoContainer.innerHTML = 
+    `
+    <div class="flex justify-center items-center flex-col space-y-2">
+    <img src="icon.png" class="h-10 w-10">
+    <h1 class="font-bold text-3xl text-center">Oops!! Sorry, There is no <br> content here</h1>
+    </div>`
+    ;
+  }
+ 
   data.forEach((videoEl) => {
     //Video Details
     let videoThumb = videoEl.thumbnail;
@@ -52,7 +88,7 @@ const getCategoryData = async (id = 1000) => {
     if (!authorVerification) {
       isVerified = "hidden";
     }
-
+    
     //Creating Video Card
     let videoCard = document.createElement("div");
       videoCard.innerHTML = `
@@ -84,12 +120,15 @@ const getCategoryData = async (id = 1000) => {
          </div>
     </div>
     `;
+    //Appending Video Card
     videoContainer.appendChild(videoCard);
   });
 };
 
-
-
+const doSorting = () => {
+  isShorted = true;
+  getCategoryData();
+}
 getWebData();
 
 getCategoryData();
