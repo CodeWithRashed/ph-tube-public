@@ -46,11 +46,9 @@ const getCategoryData = async (id = 1000) => {
 
   videoContainer.innerHTML = "";
   //Logic for blank data
-  if (data == "") {
-    let noDataDiv = document.createElement("div")
-    
-    noDataDiv.innerHTML = `
-    <div class="flex justify-center items-center flex-col space-y-2">
+  if (data == "") { 
+    videoContainer.innerHTML = `
+    <div class="flex justify-center items-center flex-col space-y-2 col-span-4">
     <img src="icon.png" class="h-24 w-24">
     <h1 class="font-bold text-2xl text-center">Oops!! Sorry, There is no <br> content here</h1>
     </div>`;
@@ -124,6 +122,11 @@ const doSorting = () => {
   isShorted = true;
   getCategoryData();
 };
+
+//navigate to Questions and Answers html file
+const gotoQna = () => {
+  window.location.href = "qna.html"
+}
 
 
 //Setting Active Class
