@@ -60,7 +60,12 @@ const getCategoryData = async (id = 1000) => {
     //Video Details
     let videoThumb = videoEl.thumbnail;
     let videoTitle = videoEl.title;
+    //Converting sec into min and hr
     let videoPostedTime = videoEl.others.posted_date;
+    let videoPostHour = Math.floor((parseInt(videoPostedTime) / 3600))
+    let videoPostMin= Math.floor((parseInt(videoPostedTime) % 3600) / 60 )
+ console.log(videoPostedTime)
+
     let videoPostStatus = "block";
 
     //Setting Hidden Class if there is no post time
@@ -86,7 +91,7 @@ const getCategoryData = async (id = 1000) => {
     videoCard.innerHTML = `
     <div class="relative h-44 bg-black rounded-xl">
       <img src="${videoThumb}" class="object-fill object-center w-full h-full rounded-xl ">
-      <h2 class="rounded absolute ${videoPostStatus} text-xs bg-black p-1 px-2 text-white z-20 bottom-2 right-3">2hrs 56min ago</h2>
+      <h2 class="rounded absolute ${videoPostStatus} text-xs bg-black p-1 px-2 text-white z-20 bottom-2 right-3">${videoPostHour}hrs ${videoPostMin}min ago</h2>
     </div>
     <div class="flex gap-3 mt-5">
       <div class="author-image w-8 h-8 rounded-full"> <img class="rounded-full object-cover w-8 h-8 " src="${authorImage}"> </div>
