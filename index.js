@@ -83,6 +83,7 @@ const getCategoryData = async (id = 1000) => {
 
     //Creating Video Card
     let videoCard = document.createElement("div");
+    videoCard.classList="shadow-lg rounded-xl py-2"
     videoCard.innerHTML = `
     <div class="relative h-44 bg-black rounded-xl">
       <img src="${videoThumb}" class="object-fill object-center w-full h-full rounded-xl ">
