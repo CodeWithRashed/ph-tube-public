@@ -4,8 +4,6 @@ let categoryContainer = document.querySelector(".category-container");
 let videoContainer = document.querySelector(".video-container");
 let isShorted;
 
-
-
 //Getting Category from API function
 const getWebData = async () => {
   //Getting Data from API
@@ -13,25 +11,21 @@ const getWebData = async () => {
   const res = await fetch(dataUrl);
   const rawData = await res.json();
   const data = rawData.data;
- 
 
   //Getting Tabs And Append them to Document
   data.forEach((category) => {
     console.log(category);
     let categoryItem = document.createElement("a");
-    categoryItem.addEventListener("click", function(){
-      console.log("Clicked", category.category_id)
-           getCategoryData(category.category_id)
-
-    })
-    categoryItem.classList = 
-      "bg-[#25252520] py-1 px-7 rounded text-[#25252590] font-bold cursor-pointer";
+    categoryItem.addEventListener("click", function () {
+      console.log("Clicked", category.category_id);
+      getCategoryData(category.category_id);
+    });
+    categoryItem.classList =
+      "tab-btn bg-[#25252520] py-1 px-7 rounded text-[#25252590] font-bold cursor-pointer ";
     categoryItem.innerText = `${category.category}`;
     categoryContainer.appendChild(categoryItem);
-    
   });
 };
-
 
 //Getting video card data from API
 const getCategoryData = async (id = 1000) => {
@@ -41,29 +35,29 @@ const getCategoryData = async (id = 1000) => {
   const rawData = await res.json();
   const data = rawData.data;
 
-  //shorting data
-  if(!isShorted){
-    console.log("No short")
-  }else{
+  //shorting data logic
+  if (!isShorted) {
+    console.log("No short");
+  } else {
     data.sort((a, b) => {
       return parseInt(b.others.views) - parseInt(a.others.views);
     });
   }
-  
-  
+
   videoContainer.innerHTML = "";
   //Logic for blank data
-  if(data == ""){
-    videoContainer.classList.remove("grid-cols-4")
-    videoContainer.innerHTML = 
-    `
+  if (data == "") {
+    let noDataDiv = document.createElement("div")
+    
+    noDataDiv.innerHTML = `
     <div class="flex justify-center items-center flex-col space-y-2">
-    <img src="icon.png" class="h-10 w-10">
-    <h1 class="font-bold text-3xl text-center">Oops!! Sorry, There is no <br> content here</h1>
-    </div>`
-    ;
+    <img src="icon.png" class="h-24 w-24">
+    <h1 class="font-bold text-2xl text-center">Oops!! Sorry, There is no <br> content here</h1>
+    </div>`;
+    document.querySelector(".noDataDiv").innerHTML =""
+    document.querySelector(".noDataDiv").appendChild(noDataDiv)
   }
- 
+
   data.forEach((videoEl) => {
     //Video Details
     let videoThumb = videoEl.thumbnail;
@@ -82,16 +76,16 @@ const getCategoryData = async (id = 1000) => {
     let authorImage = videoEl.authors[0].profile_picture;
     let authorName = videoEl.authors[0].profile_name;
     let authorVerification = videoEl.authors[0].verified;
-    
+
     let isVerified = "block";
     //Setting Hidden Class if there is no Verification
     if (!authorVerification) {
       isVerified = "hidden";
     }
-    
+
     //Creating Video Card
     let videoCard = document.createElement("div");
-      videoCard.innerHTML = `
+    videoCard.innerHTML = `
     <div class="relative h-44 bg-black rounded-xl">
       <img src="${videoThumb}" class="object-fill object-center w-full h-full rounded-xl ">
       <h2 class="rounded absolute ${videoPostStatus} text-xs bg-black p-1 px-2 text-white z-20 bottom-2 right-3">2hrs 56min ago</h2>
@@ -125,10 +119,16 @@ const getCategoryData = async (id = 1000) => {
   });
 };
 
+//Sorting Data Function
 const doSorting = () => {
   isShorted = true;
   getCategoryData();
-}
+};
+
+
+//Setting Active Class
+
+
 getWebData();
 
 getCategoryData();
