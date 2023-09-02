@@ -34,7 +34,6 @@ const getCategoryData = async (id = 1000) => {
   const data = rawData.data;
   mainData = data;
   appendData(data);
-  activeAllBtn(id)
 };
 
 //Appending Data to Video Container
@@ -131,14 +130,6 @@ const doSorting = () => {
 const gotoQna = () => {
   window.open("qna.html", "_blank");
 };
-
-//Set All Tab active by default
-const activeAllBtn = (tabId) => {
-  if(tabId == 1000){
-    console.log("BUtton is active")
-  }
-
-}
 
 //Calling For First Time Load
 getWebData();
