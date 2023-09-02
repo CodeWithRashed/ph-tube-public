@@ -1,8 +1,7 @@
-console.log("Linked With PH TUBE JS");
 //Global Variable
 let categoryContainer = document.querySelector(".category-container");
 let videoContainer = document.querySelector(".video-container");
-let isShorted;
+let mainData = [];
 
 //Getting Category from API function
 const getWebData = async () => {
@@ -25,6 +24,7 @@ const getWebData = async () => {
   });
 };
 
+
 //Getting video card data from API
 const getCategoryData = async (id = 1000) => {
   //Getting Data based on Category
@@ -32,27 +32,25 @@ const getCategoryData = async (id = 1000) => {
   const res = await fetch(url);
   const rawData = await res.json();
   const data = rawData.data;
+  mainData = data;
+  appendData(data);
+};
 
-  //shorting data logic
-  if (!isShorted) {
-  } else {
-    data.sort((a, b) => {
-      return parseInt(b.others.views) - parseInt(a.others.views);
-    });
-  }
-
+//Appending Data to Video Container
+const appendData = (dataArray) => {
   videoContainer.innerHTML = "";
-  console.log(data)
+  
   //Logic for blank data
-  if (data == "") {
+  if (dataArray == "") {
     videoContainer.innerHTML = `
-    <div class="flex justify-center items-center flex-col space-y-2 col-span-4">
+    <div class="flex justify-center items-center flex-col space-y-2 col-span-4 mt-12">
     <img src="icon.png" class="h-24 w-24">
     <h1 class="font-bold text-2xl text-center">Oops!! Sorry, There is no <br> content here</h1>
     </div>`;
   }
 
-  data.forEach((videoEl) => {
+  //Getting Data One by One
+  dataArray.forEach((videoEl) => {
     //Video Details
     let videoThumb = videoEl.thumbnail;
     let videoTitle = videoEl.title;
@@ -83,7 +81,7 @@ const getCategoryData = async (id = 1000) => {
 
     //Creating Video Card
     let videoCard = document.createElement("div");
-    videoCard.classList="shadow-lg rounded-xl py-2"
+    videoCard.classList = "shadow-lg rounded-xl py-2";
     videoCard.innerHTML = `
     <div class="relative h-44 bg-black rounded-xl">
       <img src="${videoThumb}" class="object-fill object-center w-full h-full rounded-xl ">
@@ -120,8 +118,12 @@ const getCategoryData = async (id = 1000) => {
 
 //Sorting Data Function
 const doSorting = () => {
-  isShorted = true;
-  getCategoryData();
+  mainData.sort((firstData, secData) => {
+    let firstDataViews = firstData.others.views;
+    let secDataViews = secData.others.views;
+    return parseInt(secDataViews) - parseInt(firstDataViews);
+  });
+  appendData(mainData);
 };
 
 //navigate to Questions and Answers html file
@@ -129,6 +131,6 @@ const gotoQna = () => {
   window.location.href = "qna.html";
 };
 
-//Setting Active Class
+//Calling For First Time Load
 getWebData();
 getCategoryData();
