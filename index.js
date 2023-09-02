@@ -34,6 +34,7 @@ const getCategoryData = async (id = 1000) => {
   const data = rawData.data;
   mainData = data;
   appendData(data);
+  activeAllBtn(id)
 };
 
 //Appending Data to Video Container
@@ -81,13 +82,13 @@ const appendData = (dataArray) => {
 
     //Creating Video Card
     let videoCard = document.createElement("div");
-    videoCard.classList = "shadow-lg rounded-xl py-2";
+    videoCard.classList = "shadow-lg rounded-xl py-2 px-2";
     videoCard.innerHTML = `
     <div class="relative h-44 bg-black rounded-xl">
       <img src="${videoThumb}" class="object-fill object-center w-full h-full rounded-xl ">
       <h2 class="rounded absolute ${videoPostStatus} text-xs bg-black p-1 px-2 text-white z-20 bottom-2 right-3">${videoPostHour}hrs ${videoPostMin}min ago</h2>
     </div>
-    <div class="flex gap-3 mt-5">
+    <div class="flex gap-3 mt-5 ">
       <div class="author-image w-8 h-8 rounded-full"> <img class="rounded-full object-cover w-8 h-8 " src="${authorImage}"> </div>
         <div class="video-details space-y-2">
           <h1 class="font-bold">${videoTitle}</h1>
@@ -128,8 +129,16 @@ const doSorting = () => {
 
 //navigate to Questions and Answers html file
 const gotoQna = () => {
-  window.location.href = "qna.html";
+  window.open("qna.html", "_blank");
 };
+
+//Set All Tab active by default
+const activeAllBtn = (tabId) => {
+  if(tabId == 1000){
+    console.log("BUtton is active")
+  }
+
+}
 
 //Calling For First Time Load
 getWebData();
