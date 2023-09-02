@@ -22,6 +22,7 @@ const getWebData = async () => {
     categoryItem.innerText = `${category.category}`;
     categoryContainer.appendChild(categoryItem);
   });
+  setActiveBtn(1000);
 };
 
 
@@ -34,6 +35,7 @@ const getCategoryData = async (id = 1000) => {
   const data = rawData.data;
   mainData = data;
   appendData(data);
+  setActiveBtn(id);
 };
 
 //Appending Data to Video Container
@@ -124,6 +126,59 @@ const doSorting = () => {
     return parseInt(secDataViews) - parseInt(firstDataViews);
   });
   appendData(mainData);
+};
+
+
+//Making the All Button Active by Default
+const setActiveBtn = async (id) => {
+  let allButtons = categoryContainer.querySelectorAll("button");
+  let theAllBtn = allButtons[0];
+  let musicsBtn = allButtons[1];
+  let comedyBtn = allButtons[2];
+  let drowningBtn = allButtons[3];
+
+  switch (id) {
+    case "1000":
+      //Adding Active Class to the All Btn
+      theAllBtn.classList.add("active");
+
+      // Removing Active Class from Other Buttons
+      musicsBtn.classList.remove("active");
+      comedyBtn.classList.remove("active");
+      drowningBtn.classList.remove("active");
+      break;
+    case "1001":
+      //Adding Active Class to musicsBtn
+      musicsBtn.classList.add("active");
+
+      // Removing Active Class from Other Buttons
+      theAllBtn.classList.remove("active");
+      comedyBtn.classList.remove("active");
+      drowningBtn.classList.remove("active");
+
+      break;
+    case "1003":
+      //Adding Active Class to comedyBtn
+      comedyBtn.classList.add("active");
+
+      // Removing Active Class from Other Buttons
+      theAllBtn.classList.remove("active");
+      musicsBtn.classList.remove("active");
+      drowningBtn.classList.remove("active");
+      break;
+
+    case "1005":
+      //Adding Active Class to drowningBtn
+      drowningBtn.classList.add("active");
+
+      // Removing Active Class from Other Buttons
+      theAllBtn.classList.remove("active");
+      musicsBtn.classList.remove("active");
+      comedyBtn.classList.remove("active");
+      break;
+    default:
+      theAllBtn ? theAllBtn.classList.add("active") : "";
+  }
 };
 
 //navigate to Questions and Answers html file
